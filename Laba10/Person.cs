@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Laba10
 {
-    enum Gender
+    public enum Gender
     {
         Male,
         Female
     }
 
-    enum Specialty
+    public enum Specialty
     {
         Engineer,
         Working,
         Administration
     }
-    abstract class Person
+    public abstract class Person : IComparable<Person>
     {
         public Person(string firstname, string surname, Gender _gender)
         {
@@ -26,8 +23,45 @@ namespace Laba10
             this.Surname = surname;
             this.gender = _gender;
         }
-        public string Firstname { get; set; }
-        public string Surname { get; set; }
+        private string _firstname = "";
+        private string _surname = "";
+        public string Firstname
+        {
+            get
+            {
+                return _firstname;
+            }
+            set
+            {
+                if (value != "")
+                {
+                    _firstname = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Firstname is empty");
+                }
+            }
+        }
+
+        public string Surname
+        {
+            get
+            {
+                return _surname;
+            }
+            set
+            {
+                if (value != "")
+                {
+                    _surname = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Surname is empty");
+                }
+            }
+        }
         public Gender gender { get; set; }
         public static List<Person> GetGender(Person[] people, Gender gender)
         {
@@ -63,5 +97,25 @@ namespace Laba10
             return peopleSpec;
         }
 
+        public int CompareTo(Person other)
+        {
+            return Surname.CompareTo(other.Surname);
+        }
+        public override int GetHashCode()
+        {
+            return Surname.GetHashCode() + Firstname.GetHashCode();
+        }
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Person))
+            {
+                return false;
+            }
+            else
+            {
+                Person person = (Person)obj;
+                return this.Firstname == person.Firstname && this.Surname == person.Surname;
+            }
+        }
     }
 }

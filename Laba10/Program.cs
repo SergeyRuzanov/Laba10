@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Laba10
 {
@@ -43,6 +39,32 @@ namespace Laba10
             {
                 Console.WriteLine(person);
             }
+
+            Console.WriteLine();
+            Console.WriteLine("IComparable:");
+            Array.Sort<Person>(people);
+            foreach (Person person in people)
+            {
+                Console.WriteLine(person);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("IComparer:");
+            Array.Sort<Person>(people, new ComparerPerson());
+            foreach (Person person in people)
+            {
+                Console.WriteLine(person);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("IClonable:");
+            Working w1 = new Working("Natalya", "Egorova", Gender.Female, Category.Middle);
+            Console.WriteLine("w1:");
+            Console.WriteLine(w1);
+            Working w2 = (Working)w1.Clone();
+            w1.Firstname = "Anya";
+            Console.WriteLine("w2:");
+            Console.WriteLine(w2);
 
             Console.ReadKey();
         }
