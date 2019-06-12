@@ -23,8 +23,9 @@ namespace Laba10
             this.Surname = surname;
             this.gender = _gender;
         }
-        private string _firstname = "";
-        private string _surname = "";
+
+        private string _firstname;
+        private string _surname;
         public string Firstname
         {
             get

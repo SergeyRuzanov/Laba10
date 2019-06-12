@@ -59,10 +59,15 @@ namespace Laba10
             Console.WriteLine();
             Console.WriteLine("IClonable:");
             Working w1 = new Working("Natalya", "Egorova", Gender.Female, Category.Middle);
+            Working w2 = (Working)w1.Clone();
             Console.WriteLine("w1:");
             Console.WriteLine(w1);
-            Working w2 = (Working)w1.Clone();
+            Console.WriteLine("w2:");
+            Console.WriteLine(w2);
+            Console.WriteLine();
             w1.Firstname = "Anya";
+            Console.WriteLine("w1:");
+            Console.WriteLine(w1);
             Console.WriteLine("w2:");
             Console.WriteLine(w2);
 
